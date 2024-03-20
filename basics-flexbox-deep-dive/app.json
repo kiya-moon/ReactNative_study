@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "RNCOURSE",
-    "slug": "RNCOURSE",
+    "name": "basics-flexbox-deep-dive",
+    "slug": "basics-flexbox-deep-dive",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -9,7 +9,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#1e085a"
+      "backgroundColor": "#ffffff"
     },
     "assetBundlePatterns": [
       "**/*"
