@@ -1,10 +1,14 @@
-//  사용자가 숫자를 고르고 게임을 시작하는 화면
+// 사용자가 숫자를 고르고 게임을 시작하는 화면
+// 입력란이 비어있다면 게임 화면으로 이어지지 않아야 하고, 사용자에게 값을 입력하라는 경고창을 띄워야 한다
+// 입력란에는 0이나 -1 같은 값을 입력할 수 없다
 import { TextInput, View, StyleSheet } from "react-native";
+import { useState } from "react";
 import PrimaryButton from "../components/PrimaryButton";
 
 function StartGameScreen() {
   return <View style={styles.inputContainer}>
     <TextInput 
+    
       style={styles.numberInput} 
       maxLength={2}
       keyboardType="number-pad" // 키보드 제어
