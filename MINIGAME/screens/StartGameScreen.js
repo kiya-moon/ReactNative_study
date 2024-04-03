@@ -1,10 +1,13 @@
 // 사용자가 숫자를 고르고 게임을 시작하는 화면
 // 입력란이 비어있다면 게임 화면으로 이어지지 않아야 하고, 사용자에게 값을 입력하라는 경고창을 띄워야 한다
 // 입력란에는 0이나 -1 같은 값을 입력할 수 없다
-import { TextInput, View, StyleSheet, Alert } from "react-native";
+import { TextInput, View, StyleSheet, Alert, } from "react-native";
 import { useState } from "react";
 import PrimaryButton from "../components/ui/PrimaryButton";
+import Title from "../components/ui/Title";
+import Card from "../components/ui/Card";
 import Colors from "../constants/colors";
+import InstructionText from "../components/ui/InstructionText";
 
 function StartGameScreen({onPickNumber}) {
   // 입력된 상태값 state
@@ -43,51 +46,42 @@ function StartGameScreen({onPickNumber}) {
     onPickNumber(chosenNumber)
   }
 
-  return <View style={styles.inputContainer}>
-    <TextInput 
-      style={styles.numberInput} 
-      maxLength={2}
-      keyboardType="number-pad" // 키보드 제어
-      autoCapitalize="none"
-      autoCorrect={false}
-      onChangeText={numberInputHandler}
-      value={enteredNumber} // TextInput과 바인딩되는 역할
-    />
-    <View style={styles.buttonsContainer}>
-      <View style={styles.buttonContainer}>
-        <PrimaryButton onPress={resetInputHandler}>Reset</PrimaryButton>
-      </View>
-      <View style={styles.buttonContainer}>
-        <PrimaryButton onPress={confirmInputHandler}>Confirm</PrimaryButton>
-      </View>
+  return (
+    <View style={styles.rootContainer}>
+      {/* 타이틀 영역 */}
+      <Title>Guess My Number</Title>
+      {/* 숫자 입력 영역 */}
+      <Card>
+        <InstructionText>Enter a Number</InstructionText>
+        <TextInput 
+          style={styles.numberInput} 
+          maxLength={2}
+          keyboardType="number-pad" // 키보드 제어
+          autoCapitalize="none"
+          autoCorrect={false}
+          onChangeText={numberInputHandler}
+          value={enteredNumber} // TextInput과 바인딩되는 역할
+          />
+        <View style={styles.buttonsContainer}>
+          <View style={styles.buttonContainer}>
+            <PrimaryButton onPress={resetInputHandler}>Reset</PrimaryButton>
+          </View>
+          <View style={styles.buttonContainer}>
+            <PrimaryButton onPress={confirmInputHandler}>Confirm</PrimaryButton>
+          </View>
+        </View>
+      </Card>
     </View>
-  </View>
+  )
 }
 
 export default StartGameScreen;
 
 const styles = StyleSheet.create({
-  inputContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
+  rootContainer: {
+    flex: 1,
     marginTop: 100,
-    marginHorizontal: 24,
-    padding: 16,
-    backgroundColor: Colors.primary500,
-    borderRadius: 8,
-    // css에서는 box-shadow로 박스에 그림자를 주었지만, RN에서는 불가능
-    // 플랫폼에 따라 다른 네이티브 컴포넌트로 컴파일되고, 
-    // android와 ios에서 지원되는 스타일 프로퍼티가 다르기 때문에 스타일을 각각 주어야 한다.
-    // android
-    elevation: 4,
-    // ios
-    shadowColor: "black",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowRadius: 6,
-    shadowOpacity: 0.25,
+    alignItems: 'center', // alignItems 기본은 'stretch'
   },
   numberInput: {
     height: 50,
